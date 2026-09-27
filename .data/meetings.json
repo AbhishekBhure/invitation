@@ -1,6 +1,20 @@
 [
   {
     "name": "Chinna",
+    "date": "2026-09-30",
+    "time": "TBD",
+    "activity": "coffee",
+    "activities": [
+      "coffee"
+    ],
+    "status": "confirmed",
+    "createdAt": "2026-09-27T18:03:58.469Z",
+    "notificationSent": true,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "_id": "local_1790532238470_5x242"
+  },
+  {
+    "name": "Chinna",
     "date": "2026-10-03",
     "time": "TBD",
     "activity": "coffee, food, movie, walk, surprise",

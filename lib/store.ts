@@ -6,6 +6,19 @@ import { BookingRecord } from "./validation";
 const DATA_DIR = path.join(process.cwd(), ".data");
 const LOCAL_STORE_FILE = path.join(DATA_DIR, "meetings.json");
 
+/**
+ * Returns true when running in a serverless / read-only filesystem environment
+ * (Vercel, AWS Lambda, etc.) where we cannot persist files.
+ * Vercel sets VERCEL=1; AWS Lambda sets AWS_LAMBDA_FUNCTION_NAME.
+ */
+function isServerless(): boolean {
+  return Boolean(
+    process.env.VERCEL ||
+    process.env.AWS_LAMBDA_FUNCTION_NAME ||
+    process.env.NETLIFY
+  );
+}
+
 // Local File Store helper for offline / zero-config development
 async function getLocalBookings(): Promise<BookingRecord[]> {
   try {
@@ -43,7 +56,14 @@ export async function createBooking(booking: Omit<BookingRecord, "_id">): Promis
     }
   }
 
-  // Fallback to local file store
+  // Serverless / read-only filesystem — cannot persist without MongoDB
+  if (isServerless()) {
+    throw new Error(
+      "No database configured. Please add MONGODB_URI to your Vercel environment variables and redeploy."
+    );
+  }
+
+  // Local file store fallback (dev only)
   const id = `local_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
   const record: BookingRecord = {
     ...booking,

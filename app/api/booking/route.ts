@@ -130,7 +130,20 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (error: unknown) {
-    console.error("Booking API error:", error);
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("Booking API error:", message);
+
+    // Detect the no-database-configured case and surface a clear message
+    if (message.toLowerCase().includes("mongodb_uri") || message.toLowerCase().includes("no database")) {
+      return NextResponse.json(
+        {
+          error:
+            "The app isn't connected to a database yet. Please add MONGODB_URI to your Vercel environment variables and redeploy. See .env.example for the full list of required variables.",
+        },
+        { status: 503 }
+      );
+    }
+
     return NextResponse.json(
       { error: "An unexpected error occurred while saving your date. Please try again." },
       { status: 500 }
