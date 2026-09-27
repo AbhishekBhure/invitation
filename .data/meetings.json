@@ -1,0 +1,59 @@
+[
+  {
+    "name": "Chinna",
+    "date": "2026-10-03",
+    "time": "TBD",
+    "activity": "coffee, food, movie, walk, surprise",
+    "activities": [
+      "coffee",
+      "food",
+      "movie",
+      "walk",
+      "surprise"
+    ],
+    "status": "confirmed",
+    "createdAt": "2026-09-27T16:36:56.424Z",
+    "notificationSent": true,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "_id": "local_1790527016424_qlftx"
+  },
+  {
+    "name": "Chinna",
+    "date": "2026-10-15",
+    "time": "6:30 PM",
+    "activity": "coffee, food",
+    "activities": [
+      "coffee",
+      "food"
+    ],
+    "notes": "Street food & iced latte",
+    "status": "confirmed",
+    "createdAt": "2026-09-27T16:30:46.282Z",
+    "notificationSent": true,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "_id": "local_1790526646282_skwlo"
+  },
+  {
+    "name": "Chinna",
+    "date": "2026-09-30",
+    "time": "6:30 PM",
+    "activity": "coffee",
+    "status": "confirmed",
+    "createdAt": "2026-09-27T16:21:45.488Z",
+    "notificationSent": true,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "_id": "local_1790526105488_fpkst"
+  },
+  {
+    "name": "Chinna",
+    "date": "2026-09-29",
+    "time": "6:30 PM",
+    "activity": "coffee",
+    "notes": "Boba & Tacos",
+    "status": "confirmed",
+    "createdAt": "2026-09-27T16:11:57.358Z",
+    "notificationSent": true,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "_id": "local_1790525517358_q2u63"
+  }
+]
