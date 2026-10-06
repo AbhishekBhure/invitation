@@ -2,6 +2,9 @@
 
 A personal, playful, and romantic Next.js web application built for Chinna.
 
+For complete feature specifications, user journey, and architecture diagrams, check out [FEATURES_AND_FLOW.md](FEATURES_AND_FLOW.md).
+
+
 ## Tech Stack
 - Next.js 16 (App Router) + React 19 + TypeScript
 - Tailwind CSS v4 + Framer Motion

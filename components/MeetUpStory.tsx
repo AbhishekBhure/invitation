@@ -6,6 +6,7 @@ import { Calendar, Heart, ArrowRight } from "lucide-react";
 
 interface MeetUpStoryProps {
   onContinue: () => void;
+  onReliveDharwar?: () => void;
 }
 
 const ATTEMPTS = [
@@ -14,18 +15,21 @@ const ATTEMPTS = [
     status: "Coming Soon 😭",
     bgColor: "bg-red-50 text-red-600 border-red-200",
     dotColor: "bg-red-400",
+    isDharwar: false,
   },
   {
     number: "Attempt #2 - Blr Meet up",
     status: "Rescheduled 🫠",
     bgColor: "bg-amber-50 text-amber-600 border-amber-200",
     dotColor: "bg-amber-400",
+    isDharwar: false,
   },
   {
     number: "Attempt #3 - Dharwar",
-    status: "Soon Enough ✨",
+    status: "WE ACTUALLY DID IT ❤️",
     bgColor: "bg-rose-50 text-rose-600 border-rose-300 font-bold shadow-sm",
     dotColor: "bg-rose-500 animate-ping",
+    isDharwar: true,
   },
   // {
   //   number: "Attempt #4",
@@ -35,7 +39,7 @@ const ATTEMPTS = [
   // },
 ];
 
-export function MeetUpStory({ onContinue }: MeetUpStoryProps) {
+export function MeetUpStory({ onContinue, onReliveDharwar }: MeetUpStoryProps) {
   return (
     <motion.section
       initial={{ opacity: 0, y: 20 }}
@@ -62,24 +66,48 @@ export function MeetUpStory({ onContinue }: MeetUpStoryProps) {
               initial={{ opacity: 0, x: -15 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.15 * idx, duration: 0.4 }}
-              className="relative flex items-center justify-between p-3.5 rounded-xl border bg-white/70 shadow-xs"
+              className={`relative flex flex-col p-3.5 rounded-xl border bg-white/70 shadow-xs ${
+                attempt.isDharwar
+                  ? "border-rose-300 ring-1 ring-rose-200/60 bg-gradient-to-br from-white to-rose-50/40"
+                  : ""
+              }`}
             >
               {/* Timeline marker */}
               <div
-                className={`absolute -left-[27px] top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full border-2 border-white shadow-sm ${attempt.dotColor}`}
+                className={`absolute -left-[27px] ${
+                  attempt.isDharwar ? "top-5" : "top-1/2 -translate-y-1/2"
+                } w-3.5 h-3.5 rounded-full border-2 border-white shadow-sm ${attempt.dotColor}`}
               />
 
-              <div className="flex items-center gap-2">
-                <span className="font-semibold text-gray-800 text-sm">
-                  {attempt.number}
+              <div className="flex items-center justify-between w-full">
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold text-gray-800 text-sm">
+                    {attempt.number}
+                  </span>
+                </div>
+
+                <span
+                  className={`text-xs px-2.5 py-1 rounded-full border font-medium ${attempt.bgColor}`}
+                >
+                  {attempt.status}
                 </span>
               </div>
 
-              <span
-                className={`text-xs px-2.5 py-1 rounded-full border font-medium ${attempt.bgColor}`}
-              >
-                {attempt.status}
-              </span>
+              {attempt.isDharwar && onReliveDharwar && (
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onReliveDharwar();
+                  }}
+                  id="relive-dharwar-btn"
+                  className="mt-3 w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white font-bold text-xs shadow-md shadow-rose-500/20 flex items-center justify-center gap-1.5 transition-all cursor-pointer group"
+                >
+                  <span>Relive this day</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                </motion.button>
+              )}
             </motion.div>
           ))}
         </div>

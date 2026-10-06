@@ -10,12 +10,16 @@ import { DatePicker } from "./DatePicker";
 import { ActivityPicker } from "./ActivityPicker";
 import { BookingSummary } from "./BookingSummary";
 import { SuccessScreen } from "./SuccessScreen";
+import { DharwarMemory } from "./AfterMeetup/DharwarMemory";
+
+type AppMode = "booking" | "dharwar-memory";
 
 interface MeetupAppProps {
   initialName?: string;
 }
 
 export function MeetupApp({ initialName = "Chinna" }: MeetupAppProps) {
+  const [appMode, setAppMode] = useState<AppMode>("booking");
   const [step, setStep] = useState<number>(0);
   const [name] = useState<string>(initialName);
   const [date, setDate] = useState<string>("");
@@ -76,6 +80,18 @@ export function MeetupApp({ initialName = "Chinna" }: MeetupAppProps) {
     setErrorMessage(null);
   };
 
+  if (appMode === "dharwar-memory") {
+    return (
+      <DharwarMemory
+        onExit={() => setAppMode("booking")}
+        onPlanNext={() => {
+          setAppMode("booking");
+          setStep(2);
+        }}
+      />
+    );
+  }
+
   return (
     <main className="min-h-screen relative flex flex-col justify-between py-6 px-3 sm:px-6">
       <BackgroundDecorations />
@@ -97,7 +113,11 @@ export function MeetupApp({ initialName = "Chinna" }: MeetupAppProps) {
           )}
 
           {step === 1 && (
-            <MeetUpStory key="story" onContinue={() => setStep(2)} />
+            <MeetUpStory
+              key="story"
+              onContinue={() => setStep(2)}
+              onReliveDharwar={() => setAppMode("dharwar-memory")}
+            />
           )}
 
           {step === 2 && (
