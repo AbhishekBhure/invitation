@@ -67,6 +67,9 @@ export function NextAdventure({
           <p className="text-xs text-slate-300 leading-relaxed">
             Dharwar was special. The story doesn&apos;t have to end here.
           </p>
+          <p className="text-sm text-pink-400 font-bold">
+            Let's make the Blr meetup happen
+          </p>
         </div>
       </div>
 
